@@ -505,7 +505,7 @@ main .mainContainer .jobPostList
                                 </div><!-- boxLeft 끝-->
                                 <div class="boxMiddle">
                                     <!-- <h3 class="jobPostTitle">[Web Product 팀] 프론트 엔드 엔지니어 (3년 이상)</h3> -->
-                                    <h3 class="jobPostTitle">${dto.notice_title}</h3>
+                                    <a class="jobPostTitle" href="jobPostDetail?notice_num=${dto.notice_num}">${dto.notice_title}</a>
                                     <div class="jobPostInfo">
                                         <!-- <p class="notice_area">서울 성동구</p> -->
                                         <p class="notice_area">${dto.notice_area1} ${dto.notice_area2}</p>

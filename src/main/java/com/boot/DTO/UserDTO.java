@@ -24,6 +24,9 @@ public class UserDTO {
 	private String user_birthdate;
 	private String user_gender;
 	private String recent_noticeNumArray;
+	private String comScrapArray;
+	private String noticeScrapArray;
+	private int user_no;
 	
 	private int stack_no;
 	private String stack_name;

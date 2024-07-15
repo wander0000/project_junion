@@ -1,8 +1,10 @@
 package com.boot.Controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.boot.DAO.recentNoticeDAO;
 import com.boot.DTO.BoardDTO;
+import com.boot.DTO.ComNoticeDTO;
+import com.boot.DTO.CompanyInfoDTO;
 import com.boot.DTO.JoinDTO;
 import com.boot.DTO.LoginDTO;
 import com.boot.DTO.ResumeDTO;
 import com.boot.DTO.UserDTO;
 import com.boot.Service.ComNoticeService;
+import com.boot.Service.CompanyInfo;
 import com.boot.Service.IndividualService;
 import com.boot.Service.JoinService;
 import com.boot.Service.LoginServiceImpl;
@@ -36,6 +42,9 @@ public class individualController {
 	
 	@Autowired
 	private JoinService joinService;
+	
+	@Autowired
+	private CompanyInfo comService;
 		
 	
 	@RequestMapping("/individualMain")//개인 마이페이지 메인으로
@@ -54,20 +63,48 @@ public class individualController {
 		
 	
 	
-	@RequestMapping("/noticeScrap") //스크랩 공고
-	public String noticeScrap(Model model) {
-		log.info("@# noticeScrap");		
-		
-		return "individualNoticeScrap";
-	}
+	
 	@RequestMapping("/interComlist")//관심기업
-	public String individualInterComlist(Model model) {
+	public String individualInterComlist(HttpServletRequest request, Model model) {
 		log.info("@# individualInterComlist");		
+//		
+//		HttpSession session = request.getSession();
+//		String user_email = (String)session.getAttribute("login_email");
+//		
+//		UserDTO dto = serivce.getUserInfo(user_email);
+//		log.info("@# individualInterComlist dto=>"+dto);
+//		
+//		String comScrapArray = dto.getComScrapArray();
+//		
+//		// 사용자정보의 관심기업 목록 가져오기
+//		CompanyInfoDTO dto = comService.getRecentNoticeList(recent_noticeNumArr);
+//		log.info("@# recentNotice recent_notice list=>"+list);		
+//		
+//
+//		// 쉼표로 구분된 문자열을 정수 리스트로 변환
+//		List<Integer> noticeArr = Arrays.stream(recent_noticeNumArr.split(","))
+//				.map(String::trim)          // 각 문자열의 양쪽 공백 제거
+//				.map(Integer::parseInt)     // 문자열을 정수로 변환
+//				.collect(Collectors.toList());
+//		log.info("@# getRecentNoticeList noticeArr=>"+noticeArr);
+//		
+//		
+//		// noticeArr 번호를 하나하나씩 넣어서 쿼리 실행
+//		ArrayList<ComNoticeDTO> list = new ArrayList<>();
+//		
+//		recentNoticeDAO dao = sqlSession.getMapper(recentNoticeDAO.class);
+//		
+//		 for (int noticeNum : noticeArr) {
+//			 CompanyInfoDTO dto = dao.getRecentNotice(noticeNum);
+//	            list.add(dto);
+//			log.info("@# getRecentNoticeList list=>"+list);
+//	     }
+		
 		
 		return "individualInterComlist";
 	}
 	@RequestMapping("/userInfo")//회원정보수정 메뉴 > 회원정보 확인
-	public String individualUserInfo(@RequestParam HashMap<String, String> param,HttpServletRequest request, Model model) {
+	public String individualUserInfo(@RequestParam HashMap<String, String> param, HttpServletRequest request, Model model) {
 	
 		log.info("@# individualUserInfo");
 		HttpSession session = request.getSession();

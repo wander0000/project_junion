@@ -111,14 +111,12 @@ main .mainContainer
   gap : 0 20px;
   
 }
-.mainContainer .recentJobPost .title a
+.mainContainer .recentJobPost .title 
 {
   color: var(--color-black);
-  margin-top: 70px;
-  
 }
 
-.mainContainer .recentJobPost .listNum a
+.mainContainer .recentJobPost .listNum 
 {
   color: var(--main-color);
   margin-right:200px;
@@ -453,12 +451,14 @@ main .mainContainer .jobPostList
             <main>
                 <div class="mainContainer">
                     <div class="recentJobPost">
-                        <h3 class="title">
+                        <!-- <h3 class="title">
                             <a href="#">스크랩 공고</a>
                         </h3>
                         <h3 class="listNum">
                             <a href="#">30</a>
-                        </h3>
+                        </h3> -->
+                        <h3 class="title">스크랩 공고</h3>
+                      <h3 class="listNum">${noticeList.size()}</h3>
                     </div>
                     <div class="listTable">
                         <div class="searchWrap">
@@ -499,17 +499,22 @@ main .mainContainer .jobPostList
                             </div>                   
                         </div><!-- searchWrap 끝 -->  
                         <div class="jobPostList">
-
+                          <c:forEach items="${noticeList}" var="dto">	
                             <div class="postBox">
                                 <div class="boxLeft">
                                     <input type="checkbox" name="postListRow" id="com_name" class="normal"><!-- id값에 기업명가져와서 넣어줘야함-->
-                                    <label for="com_name">브레인즈컴퍼니</label>
+                                    <!-- <label for="com_name">브레인즈컴퍼니</label> -->
+                                    <label for="com_name">${dto.com_name}</label>
                                 </div><!-- boxLeft 끝-->
                                 <div class="boxMiddle">
-                                    <h3 class="jobPostTitle">[Web Product 팀] 프론트 엔드 엔지니어 (3년 이상)</h3>
+                                    <!-- <h3 class="jobPostTitle">[Web Product 팀] 프론트 엔드 엔지니어 (3년 이상)</h3> -->
+                                    <!-- <h3 class="jobPostTitle">${dto.notice_title}</h3> -->
+                                    <a class="jobPostTitle" href="jobPostDetail?notice_num=${dto.notice_num}">${dto.notice_title}</a>
                                     <div class="jobPostInfo">
-                                        <p class="notice_area">서울 성동구</p>
-                                        <p class="notice_job">경력 3-5년</p>
+                                        <!-- <p class="notice_area">서울 성동구</p> -->
+                                        <p class="notice_area">${dto.notice_area1} ${dto.notice_area2}</p>
+                                        <!-- <p class="notice_job">경력 3-5년</p> -->
+                                        <p class="notice_job">${dto.notice_career}</p>
                                     </div><!-- jobPostInfo 끝-->
                                     <div class="resumeInfo">
                                         <!-- 지원완료:지원한이력서력서보기(지원일자), 미지원:기본이력서로지원하기 분기처리해야함 --> 
@@ -541,12 +546,12 @@ main .mainContainer .jobPostList
                                     </div>
                                 </div><!-- boxRight 끝 -->   
                             </div><!-- postBox 하나의 공고 박스 끝 --> 
-                            
+                          </c:forEach> 
                         </div><!-- jobPostList 끝 -->    
-                    </div><!-- listTable 끝 --> 
-                    <div class="listPaging">
-                        <h5> 1  2  3  4  5  6  7  8 </h5>
-                    </div><!-- listPaging 끝 -->    
+                    <!-- </div>listTable 끝  -->
+                    <!-- <div class="listPaging"> -->
+                        <!-- <h5> 1  2  3  4  5  6  7  8 </h5> -->
+                    <!-- </div>listPaging 끝     -->
                 </div> <!-- mainContainer -->
             </main>
         </div><!-- mainContent-->

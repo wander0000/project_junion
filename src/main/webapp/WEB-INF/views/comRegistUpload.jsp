@@ -24,20 +24,20 @@
 		<%@ include file="header.jsp" %>
 			<main>
             <div class="mainInner">
-                <!-- <form id="registUpload" method="post" action="registerNotice" class="post" name="notice" onsubmit="return validateForm()"> -->
+                <!-- <form id="registUpload" method="post" action="registerNotice" class="post" name="notice"> -->
                 <form id="registUpload" method="post" action="registerNotice" class="post" name="notice">
-                    <div class="image">
+                    <div class="noitceImage">
                         <input type="file" name="uploadFile" id="file">
-                        <label for="file">
-                            <div class="comImage">
-                                <div class="uploadResult">
-                                    <ul class="comNoticeImage">
-                                    </ul>
-                                </div>
-                                <div class="building">
-									<h3>이미지등록</h3>
+						<div class="uploadResult">
+							<ul class="comNoticeImage">
+							</ul>
+						</div>
+                        <label for="file" class="imgAddLabel">
+							<div class="comImage">
+								<div class="building">
 								</div>                                
                             </div>
+							<h3 style="cursor: pointer;">이미지 등록</h3>
                         </label>
                     </div>
 					
@@ -59,7 +59,7 @@
                         <div class="postValue">
                             <h5 class="value">모집 인원 </h5>
                             <span>
-                                <input type="text" class="people" name="notice_recruitNum" placeholder="모집 인원을 숫자만 입력해주세요." required>
+                                <input type="number" class="people" name="notice_recruitNum" placeholder="모집 인원을 숫자만 입력해주세요." required>
                             </span>
                         </div>
 
@@ -100,12 +100,11 @@
                         <div class="career">
                             <h5 class="value"> 희망 경력 </h5>
                             <div class="year">
-								<input type="checkbox" class="checkboxCarrer" name="notice_career" value="신입" onclick="updateCareer(this)">&nbsp;&nbsp;<label for="new">신입</label>
-						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="1~3년" onclick="updateCareer(this)">&nbsp;&nbsp;<label for="one">1~3년</label>
-						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="3~5년" onclick="updateCareer(this)">&nbsp;&nbsp;<label for="three">3~5년</label>
-						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="5~7년" onclick="updateCareer(this)">&nbsp;&nbsp;<label for="five">5~7년</label>
-						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="경력무관" onclick="updateCareer(this)">&nbsp;&nbsp;<label for="any">경력무관</label>
-						        <!-- <input type="hidden" name="notice_career" id="notice_career" value="${notice_career}"> -->
+								<input type="checkbox" class="checkboxCarrer" name="notice_career" value="신입">&nbsp;&nbsp;<label for="new">신입</label>
+						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="1~3년">&nbsp;&nbsp;<label for="one">1~3년</label>
+						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="3~5년">&nbsp;&nbsp;<label for="three">3~5년</label>
+						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="5~7년">&nbsp;&nbsp;<label for="five">5~7년</label>
+						        <input type="checkbox" class="checkboxCarrer" name="notice_career" value="경력무관">&nbsp;&nbsp;<label for="any">경력무관</label>
                             </div><!--year-->
                         </div><!--career-->
 
@@ -119,7 +118,7 @@
                                 </select>
                             </span>
                             <span class="none">
-                                <input type="text" class="postPay" name="notice_pay2" placeholder="급여를 입력해주세요." required> 만원
+                                <input type="number" class="postPay" name="notice_pay2" placeholder="급여를 입력해주세요." required> 만원
                             </span>
                             <div class="lowPay">(2024년 최저시급 9,860원)</div>
                         </div><!--salay-->
@@ -132,7 +131,7 @@
                                 </span>
                                 ~
                                 <span>
-                                    <input type="date" class="date" name="notice_endDate" required>
+                                    <input type="date" id="endDate" class="date" name="notice_endDate" required>
                                 </span>
                             </div>
                         </div><!--accept-->
@@ -140,10 +139,10 @@
                         <div class="work">
                             <h5 class="value"> 근무 형태 </h5>
                             <div class="workType">
-								<input type="checkbox" class="checkboxContact" name="notice_contactType" value="정규직" onclick="updateContactType(this)">&nbsp;&nbsp;<label for="real">정규직</label>
-						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="계약직" onclick="updateContactType(this)">&nbsp;&nbsp;<label for="get">계약직</label>
-						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="인턴직" onclick="updateContactType(this)">&nbsp;&nbsp;<label for="inten"> 인턴직</label>
-						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="프리랜서" onclick="updateContactType(this)">&nbsp;&nbsp;<label for="pre">프리랜서</label>
+								<input type="checkbox" class="checkboxContact" name="notice_contactType" value="정규직">&nbsp;&nbsp;<label for="real">정규직</label>
+						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="계약직">&nbsp;&nbsp;<label for="get">계약직</label>
+						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="인턴직">&nbsp;&nbsp;<label for="inten"> 인턴직</label>
+						        <input type="checkbox" class="checkboxContact" name="notice_contactType" value="프리랜서">&nbsp;&nbsp;<label for="pre">프리랜서</label>
                             </div>
                         </div><!--type(근무 형태)-->
                         <div class="workDepart">
@@ -273,6 +272,7 @@
 	    const jeonnam = ["광양시","나주시","목포시","순천시","여수시","강진군","고흥군","곡성군","구례군","담양군","무안군","보성군","신안군","영광군","영암군","완도군","장성군","장흥군","진도군","함평군","해남군","화순군"];
 	    const jeonbuk = ["군산시", "김제시", "남원시", "익산시", "전주시", "정읍시", "고창군", "무주군", "부안군", "순창군", "완주군", "임실군", "장수군", "진안군"];
 	    const jeju = ["서귀포시","제주시","남제주군","북제주군"];
+		const chungnam = ["천안시","아산시","서산시","당진시","홍성군","보령시","논산시","공주시","계룡시","서천군","부여군","청양군","태안군","금산군","예산군"];
 	    const chungbuk = ["제천시","청주시","충주시","괴산군","단양군","보은군","영동군","옥천군","음성군","증평군","진천군","청원군"];
 	    
 	  
@@ -311,6 +311,13 @@
         }
 	  
 	    state.options.length = 1;
+
+		// "전체" 옵션 추가
+        let allOption = document.createElement("option");
+        allOption.value = "전체";
+        allOption.innerHTML = "전체";
+        state.appendChild(allOption);
+
 	    // 군/구 갯수;
 	  
 	      for (property in add) {
@@ -343,8 +350,8 @@
 	  textarea.style.height = textarea.scrollHeight + 'px';
 	}
 	
-	/*스택값*/
 	document.addEventListener('DOMContentLoaded', (event) => {
+		/*스택값*/
 	    const techButtons = document.querySelectorAll('.tech');
 	    const noticeStackInput = document.getElementById('notice_stack');
 
@@ -366,6 +373,72 @@
 
 
 	
+</script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+
+	/*
+		2024-07-16 하지수 
+		접수기간 시작 날짜 오늘 부터 시작, + 이전 날짜는 선택할 수 없음
+	*/
+		var today = new Date();
+		var year = today.getFullYear();
+		var month = today.getMonth() + 1;
+		var day = today.getDate();
+		
+		if(month < 10) month = '0' + month;
+		if(day < 10) day = '0' + day;
+		
+		var dateString = year + '-' + month + '-' + day;
+
+		// 오늘 날짜 설정 및 최소값 설정
+		var startDateInput = document.getElementById('currentDate');
+		var endDateInput = document.getElementById('endDate');
+		
+		startDateInput.value = dateString;
+		startDateInput.min = dateString;
+		
+		// endDateInput.value = dateString;
+		endDateInput.min = dateString; //날짜 설정 끝
+
+
+	/*
+		2024-07-16 하지수 
+		체크박스 필수로 하나만 선택, 기본으로 첫번째 체크박스 자동체크 
+	*/
+		const careerCheckboxes = document.querySelectorAll('.checkboxCarrer');
+		const contactCheckboxes = document.querySelectorAll('.checkboxContact');
+
+		function onlyOne(checkboxes, checkbox) {
+			checkboxes.forEach((item) => {
+				if (item !== checkbox) item.checked = false;
+			});
+		}
+
+		function handleCheckboxChange(checkboxes) {
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', function () {
+					if (checkbox.checked) {
+						onlyOne(checkboxes, checkbox);
+					} else {
+						const isAnyChecked = Array.from(checkboxes).some((item) => item.checked);
+						if (!isAnyChecked) {
+							checkbox.checked = true;
+						}
+					}
+				});
+			});
+
+			const isAnyChecked = Array.from(checkboxes).some((item) => item.checked);
+			if (!isAnyChecked) {
+				checkboxes[0].checked = true;
+			} // 첫번째 체크박스 자동 체크
+		}
+
+		handleCheckboxChange(careerCheckboxes);
+		handleCheckboxChange(contactCheckboxes); //체크박스 끝
+	});
+
 </script>
 
 
@@ -403,7 +476,9 @@
 
 			console.log(str);
 			// return;
-			formObj.append(str).submit();
+			// formObj.append(str).submit();
+			formObj.append(str);
+       	 	formObj[0].submit(); // 폼을 정상적으로 제출
 		});//end of button submit
 
 		//확장자(exe, sh, alz), 파일크기(5MB 미만) 조건
@@ -424,16 +499,30 @@
 		}
 
 		$("input[type='file']").change(function (e){
+			// 이미 업로드된 파일이 있는지 확인
+			if ($(".uploadResult ul li").length > 0) {
+				alert("하나의 파일만 업로드할 수 있습니다. 삭제하고 다시 업로드 해주세요.");
+				$("input[type='file']").val(""); // 파일 입력 초기화
+				return false;
+			}
+
 			var formData = new FormData();
 			var inputFile = $("input[name='uploadFile']");
 			//files : 파일정보
 			var files = inputFile[0].files;
+
+			if(files.length > 1) {
+				alert("하나의 파일만 업로드할 수 있습니다.");
+				$("input[type='file']").val(""); // 파일 입력 초기화
+				return false;
+			}
 
 			for(var i=0; i<files.length; i++){
 				console.log("@# files=>"+files[i].name);
 
 				//파일크기와 종류중에서 거짓이면 리턴
 				if(!checkExtension(files[i].name, files[i].size)){
+					$("input[type='file']").val(""); // 파일 입력 초기화
 					return false;
 				}
 
@@ -466,6 +555,7 @@
 				}
 
 				var uploadUL = $(".uploadResult ul");
+				uploadUL.empty(); // 기존 업로드된 파일 정보 제거
 				var str="";
 
 				$(uploadResultArr).each(function (i, obj){
@@ -489,7 +579,7 @@
 						str += "</div>";
 						str += "<div class='imgDelete'>";
 						// str += "<span data-file=\'"+ fileCallPath +"\'data-type='image'><i class='fa-regular fa-trash-can'></i></span>";
-						str += "<span data-file=\'"+ fileCallPath +"\'data-type='image'>이미지 삭제</span>";
+						str += "<span style='cursor: pointer;' data-file=\'"+ fileCallPath +"\'data-type='image'>이미지 삭제</span>";
 						str += "</div></li>";
 					} else {
 						// var fileCallPath = obj.uploadPath + obj.uuid + "_" + obj.fileName;
@@ -509,9 +599,11 @@
 
 				//div class 에 파일 목록 추가
 				uploadUL.append(str);
+				$('.comImage').css({"display":"none"});
 			}
 
-			$(".uploadResult").on("click","span",function(){
+			// $(".uploadResult").on("click","span",function(){
+			$(".uploadResult").on("click","span[data-file]",function(){
 				var targetFile = $(this).data("file");
 				var type = $(this).data("type");
 				var uploadResultItem = $(this).closest("li");
@@ -526,14 +618,17 @@
 					,data: {fileName: targetFile, type: type}
 					,url: "registDeleteFile"
 					,success: function(result){
-						alert(result);
+						alert("삭제 완료");
 						//브라우저에서 해당 썸네일이나 첨부파일이미지 제거
 						uploadResultItem.remove();
+
+						if($(".uploadResult ul li").length === 0){
+							$('.comImage').css({"display":"block"}); // 모든 파일이 삭제되면 보이기
+						}
 					}
 				});//end of ajax
 			});//end of click
 		});//end of change 
 	});//end of ready // 이미지 업로드 끝
 </script>
-
 

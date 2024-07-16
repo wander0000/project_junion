@@ -256,6 +256,7 @@
 	.postBox .boxMiddle .com_name
 	{
 	font-size: var(--font-size16);
+	color: var(--color-black);
 	cursor: pointer;
 	}
 
@@ -366,7 +367,7 @@
                     </div><!-- mainTitle 끝 -->
                     <div class="subtitle">
                         <h4 class="title">관심기업</h4>
-                        <h4 class="listNum">30</h4>
+                        <h4 class="listNum">${comList.size()}</h4>
                     </div>
                     <div class="listTable">
                         <div class="searchWrap">
@@ -386,30 +387,33 @@
                             </div> <!-- optionSorRight 끝 -->                   
                         </div><!-- searchWrap 끝 -->  
                         <div class="comList">
-                            <div class="postBox">
-                                <div class="boxLeft">
-                                    <input type="checkbox" name="comListRow" id="com_name" class="normal"><!-- id값에 기업명가져와서 넣어줘야함-->
-                                </div><!-- boxLeft 끝-->
-                                <div class="boxMiddle">
-                                    <h4 class="com_name">(주)티오에스코리아</h4>
-                                    <div class="comInfo">
-                                        <p>서울 국내·외 교육 관련 마케팅 및 컨설팀 업무 바이럴 및 온라인 마케팅 / 키워드 광고 / 등</p>
-                                    </div><!-- comInfo 끝-->
-                                    <div class="jobPostNum">
-                                        <p class="title">현재 12건 채용중</p><!-- 채용공고건수 받아와야함--> 
-                                    </div><!-- resumeInfo 끝-->
-                                </div><!-- boxMiddle  끝-->
-                                <div class="boxRight">
-                                    <span class="detailTab"> 
-                                        <!-- <button onclick="location.href='#'">자세히보기</button> -->
-                                        <button class="detailBtn">자세히보기</button>
-                                    </span>
-                                    <span class="delIcon">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </span>
-                                </div><!-- boxRight 끝 -->   
-                            </div><!-- postBox 하나의 기업박스 끝 --> 
-                            
+							<c:forEach items="${comList}" var="dto">	
+								<div class="postBox">
+									<div class="boxLeft">
+										<input type="checkbox" name="comListRow" id="com_name" class="normal"><!-- id값에 기업명가져와서 넣어줘야함-->
+									</div><!-- boxLeft 끝-->
+									<div class="boxMiddle">
+										<a href="/comDetail?com_email=${dto.com_email}">
+											<h4 class="com_name">${dto.com_name}</h4>
+										</a>
+										<div class="comInfo">
+											<p>${dto.com_content}</p>
+										</div><!-- comInfo 끝-->
+										<div class="jobPostNum">
+											<p class="title">현재 12건 채용중</p><!-- 채용공고건수 받아와야함--> 
+										</div><!-- resumeInfo 끝-->
+									</div><!-- boxMiddle  끝-->
+									<div class="boxRight">
+										<span class="detailTab"> 
+											<button  class="detailBtn" onclick="location.href='/comDetail?com_email=${dto.com_email}'">자세히보기</button>
+											<!-- <button class="detailBtn">자세히보기</button> -->
+										</span>
+										<span class="delIcon">
+											<i class="fa-regular fa-trash-can"></i>
+										</span>
+									</div><!-- boxRight 끝 -->   
+								</div><!-- postBox 하나의 기업박스 끝 --> 
+							</c:forEach>  
                         </div><!-- comList 끝 -->    
                     </div><!-- listTable 끝 --> 
                     <div class="listPaging">

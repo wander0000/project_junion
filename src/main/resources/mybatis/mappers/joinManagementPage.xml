@@ -55,8 +55,10 @@
 							n.com_email, n.com_name, n.notice_title, n.notice_area1, n.notice_area2,
 							n.notice_career, n.joincompany_date, r.resume_title, n.notice_num,
 							n.notice_endDate, n.noticeCheck, n.resume_num, n.notice_status , n.user_email 
-			                from notice_tb n left JOIN resume_tb r ON n.resume_num = r.resume_num
-							WHERE n.user_email = #{user_email}
+			                from notice_tb n 
+			                left JOIN resume_tb r ON n.resume_num = r.resume_num
+			                left JOIN submit_tb s ON s.resume_num = n.resume_num
+							WHERE s.user_email = #{user_email}
 			                order by notice_num desc) a
 			where rownum <= (#{pageNum} * #{amount})
 			) aa

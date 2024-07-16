@@ -21,8 +21,6 @@
   display: flex;
 }
 
-.toptitle
-{padding-top: 90px;}
 
 /* 네비게이션 */
 .navigation
@@ -184,7 +182,7 @@ main .containe
 /* 헤더밑 타이틀*/
 main .toptitle
 {
-  font-size: var(--font-size32);
+
   text-align: left;
   width: 100%;
   margin-bottom: 20px;
@@ -259,8 +257,10 @@ main table.tabCon
 
 td
 {
-  padding: 25px;
+  height: 70px;
   width: calc(1200px - 360px);
+  padding: 0 20px;
+  background-color: var(--color-white);
 
 }
 
@@ -268,7 +268,20 @@ td .modifytext
 {
   background-color: none;
   border: none ;
-  padding: 5px 20px;
+  /* padding: 0 20px; */
+  /* border-radius: 6px;
+  box-sizing: border-box; */
+  
+}
+td input[type=text]
+{
+  height: 70px;
+  width: calc(1200px - 360px);
+  margin: 0;
+  background-color: var(--color-white);
+  font-size: var(--font-size16);
+  border: none ;
+  padding: 0 5px;
   border-radius: 6px;
   box-sizing: border-box;
   

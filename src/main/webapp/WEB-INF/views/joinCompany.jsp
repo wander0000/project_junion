@@ -278,7 +278,7 @@ section
 </head>
 <body>
 	<div class="container">
-		<%@ include file="../common/header.jsp" %>
+		<%@ include file="header.jsp" %>
 		<section>
             <div class="sectionInner">            
                 <h3 class="sectionTitleJoinC">
@@ -445,7 +445,7 @@ section
                 </div> <!--회원가입_기업 popupAgreeCon끝-->
             </div> <!--회원가입_기업 popupCon F 끝-->
     </section>
-		<%@ include file="../common/footer.jsp" %>	   
+		<%@ include file="footer.jsp" %>	   
 	</div>
 </body>
 </html>

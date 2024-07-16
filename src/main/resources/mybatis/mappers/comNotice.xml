@@ -31,12 +31,12 @@
 	
 <!--	지원하기 클릭, 공고 정보 가져오기 -->
 	<select id="getNoticeInfo" resultType="com.boot.DTO.ComNoticeDTO">
-		select notice_title, com_name from notice_tb where notice_num=#{notice_num}
+		select notice_title, com_name, com_email from notice_tb where notice_num=#{notice_num}
 	</select>
 	
 <!--	지원하기 클릭, 이력서 정보 가져오기 -->
 	<select id="getProfileList" resultType="com.boot.DTO.ResumeDTO">
-		select resume_title, resume_num from resume_tb where user_email=#{user_email}
+		select resume_title, resume_num, user_email from resume_tb where user_email=#{user_email}
 	</select>
 	
 <!--	지원 버튼 클릭, 이력서 정보 가져오기 -->
@@ -49,10 +49,11 @@
 	 	update notice_tb set resume_num=#{resume_num} where notice_num=#{notice_num}
 	</update>
 	
-	<!--	이력서제출시  공고테이블에 이력서번호 배열값 추가-->
-	<update id="updateResumeNumArr">
-	 	update notice_tb set resumeNoArr=#{resumeNoArr} where notice_num=#{notice_num}
-	</update>
+	<!--	이력서제출시  submit테이블에 정보 추가-->
+	<insert id="updateSubmitData" parameterType="com.boot.DTO.SubmitDTO">
+		insert into submit_tb(notice_num, resume_num, user_email) 
+			   			values(#{notice_num}, #{resume_num}, #{user_email})
+    </insert>
 
 <!--지수-->
 

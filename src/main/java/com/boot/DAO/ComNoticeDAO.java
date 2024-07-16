@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.boot.DTO.ComNoticeAttachDTO;
 import com.boot.DTO.ComNoticeDTO;
 import com.boot.DTO.ResumeDTO;
+import com.boot.DTO.SubmitDTO;
 
 public interface ComNoticeDAO {
 //	public ArrayList<ComNoticeDTO> JobPostCard();//채용공고(카드형) 목록 가져오기
@@ -24,7 +25,7 @@ public interface ComNoticeDAO {
 	public ArrayList<ResumeDTO> getProfileList(String user_email);//지원하기 클릭, 이력서 정보 가져오기
 	public ArrayList<ComNoticeDTO> getResumeNum(int notice_num);//이력서 선택, 지원 완료시 공고 테이블에 이력서 배열값 가져오기
 	public void insertResumNum(HashMap<String, String> param);//이력서 선택, 지원 완료시 공고 테이블에 이력서 번호 추가
-	public void updateResumeNumArr(ComNoticeDTO comNoticeDTO);//DB notice 정보에 지원자 이력서넘버 배열 저장
+	public void updateSubmitData(SubmitDTO submitDTO);//이력서지원정보 저장
 		
 	
 

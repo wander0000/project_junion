@@ -38,6 +38,7 @@ import com.boot.DAO.ComNoticeDAO;
 import com.boot.DTO.ComNoticeAttachDTO;
 import com.boot.DTO.ComNoticeDTO;
 import com.boot.DTO.ResumeDTO;
+import com.boot.DTO.SubmitDTO;
 import com.boot.DTO.UserDTO;
 import com.boot.Service.ComNoticeService;
 import com.boot.Service.IndividualService;
@@ -177,41 +178,26 @@ public class ComNoticeController {
 		log.info("resumeUser!!!");
 		log.info("resumeUser!!! param" +param);
 		
-		// notice_num 으로 공고정보 가져오기
+		//SubmitDTO에 저장할 정보 가져오기
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
-//		log.info(notice_num);
-		ComNoticeDTO dto =postService.getNoticeInfo(notice_num);
-	   		
-		String ResumeNoArrStr = dto.getResumeNoArr();
-		log.info("@# resumeUser ResumeNoArrStr=> " + ResumeNoArrStr);
+		int resume_num = Integer.parseInt(request.getParameter("resume_num"));
+		HttpSession session = request.getSession();
+		String user_email = (String) session.getAttribute("login_email");
+//		String com_email = param.get("notice");
+//		String com_name = request.getParameter("com_name");
 		
-		 //지원자 없어서 빈 경우에는 list 만들어줌
-	    if (ResumeNoArrStr == null) {
-	    	 List<Integer> resumeNoArr = new ArrayList<>();
-	    }
-	    // 이미 값이 있으면 > 쉼표로 구분된 문자열을 정수 리스트로 변환
-	 		List<Integer> resumeNoArr = Arrays.stream(ResumeNoArrStr.split(","))
-	 				.map(String::trim)          // 각 문자열의 양쪽 공백 제거
-	 				.map(Integer::parseInt)     // 문자열을 정수로 변환
-	 				.collect(Collectors.toList());
-	 		log.info("@# getRecentNoticeList noticeArr=>"+resumeNoArr);
-	    
-	    // 이미 리스트에 있는지 확인하고, 없는 경우에만 추가
-	    if (!resumeNoArr.contains(notice_num)) {
-	    	resumeNoArr.add(notice_num);
-	    }
-	    log.info("@# resumeUser resumeNoArr=> " + resumeNoArr);
-
-	
-	    // 리스트를 쉼표로 구분된 문자열로 변환 > 쿼리를 통해 저장하려면 JSON형식이나 문자열로 반환해서 보내줘야 함
-	    String newStr = resumeNoArr.stream()
-	                             .map(String::valueOf)
-	                             .reduce((a, b) -> a + "," + b)
-	                             .orElse("");
-	    log.info("@# jobPost new ResumeNoArrStr => "+newStr);
-	   
-	    dto.setResumeNoArr(newStr);// notice 정보에 지원자 이력서넘버 배열 저장
-	    postService.updateResumeNumArr(dto); //DB notice 정보에 지원자 이력서넘버 배열 저장
+		SubmitDTO dto = new SubmitDTO();
+//		dto.setCom_email(com_email);
+		dto.setUser_email(user_email);
+		dto.setNotice_num(notice_num);
+		dto.setResume_num(resume_num);
+		log.info("resumeUser!!! SubmitDTO=> " +dto);
+		
+		
+		postService.updateSubmitData(dto);//submit 테이블에 정보저장
+		
+//		log.info(notice_num);
+		
 		
 //		boolean resumeResult = postService.insertResumNum(param);
 		postService.insertResumNum(param);
@@ -346,7 +332,7 @@ public class ComNoticeController {
 					FileOutputStream thumnail = new FileOutputStream(new File(uploadPath, "s_"+uploadFileName));
 					
 //					썸네일 파일 형식을 100/100 크기로 생성
-					Thumbnailator.createThumbnail(fis, thumnail, 100, 100);
+					Thumbnailator.createThumbnail(fis, thumnail, 1200, 1200);
 					
 					thumnail.close();
 				}

@@ -109,6 +109,13 @@ public class boardBoardServiceImpl implements boardBoardService{
 		attachDAO.boardDeleteFile(param.get("board_no"));  // deleteFile에 param에서 구한 "boardNo"값을 넣어준다
 	}
 
+	@Override
+	public int hitcount(boardBoardDTO boardDTO) {
+		boardBoardDAO dao = sqlSession.getMapper(boardBoardDAO.class); 
+		return dao.hitcount(boardDTO);
+		
+	}
+
 //	@Override
 //	public BoardDTO hitcount(HashMap<String, String> param) {
 //		

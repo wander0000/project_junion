@@ -27,7 +27,8 @@ public class CompanyInfoDTO {
 //	private int com_sale;
 	private String com_sale;
 	private String com_type;
-	private int com_salary;
+//	private int com_salary;
+	private String com_salary;
 	private String com_CEO;
 	private String com_site;
 	private int com_employee;

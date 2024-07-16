@@ -4,6 +4,27 @@
 
 <mapper namespace="com.boot.DAO.CompanyInfoDAO">
 
+<!-- 	연주  -->
+    <select id="comList" resultType="com.boot.DTO.CompanyInfoDTO"> <!-- 기업 리스트 목록 페이지-->
+		  select com_email, com_pw, com_pw_check, com_name, com_serial_number, 
+		  user_type, com_tel, com_star, com_location, com_year, com_content, 
+		  com_sale, com_type, com_salary, com_CEO, com_site, com_employee, 
+		  com_person, com_job, com_stack, notice_num, com_scrap, update_date, com_no from COM_TB
+		  order by update_date desc
+
+    </select>
+
+  <!-- 	기업 정보  com_num으로 조회하기  -->
+	<select id="comInfoByNum" resultType="com.boot.DTO.CompanyInfoDTO">
+		select com_email, com_pw, com_name, com_serial_number, com_tel, com_person, com_stack,
+			com_location, com_year, com_content, com_sale, com_type, com_salary,
+			com_CEO, com_site, com_employee from com_tb where com_num=#{com_num}
+	</select>
+	
+<!-- 	연주 끝 -->
+
+
+
   <!-- 	기업 정보 관리 페이지 정보 뿌리기  -->
 	<select id="companyInfo" resultType="com.boot.DTO.CompanyInfoDTO">
 		select com_email, com_pw, com_name, com_serial_number, com_tel, com_person, com_stack,

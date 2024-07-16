@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인-마이페이지-탈퇴</title>
+<title>개인-최근 본 공고</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/individualMain.css">
 <!--<link rel="stylesheet" href="src/main/resources/static/css/style.css">-->
@@ -501,7 +501,7 @@ main .mainContainer .jobPostList
                                 <div class="boxLeft">
                                     <input type="checkbox" name="postListRow" id="com_name" class="normal"><!-- id값에 기업명가져와서 넣어줘야함-->
                                     <!-- <label for="com_name">브레인즈컴퍼니</label> -->
-                                    <label for="com_name">${dto.com_name}</label>
+                                    <label for="com_name"><a href="/comDetail?com_email=${dto.com_email}">${dto.com_name}</a></label>
                                 </div><!-- boxLeft 끝-->
                                 <div class="boxMiddle">
                                     <!-- <h3 class="jobPostTitle">[Web Product 팀] 프론트 엔드 엔지니어 (3년 이상)</h3> -->
@@ -656,10 +656,10 @@ $(".normal").on("click", function() {
     2024-07-02 서연주 
     자세히보기 누르면 기업정보 상세페이지로 새창(기업아이디를 가지고 이동해야함)
     */
-    $('button.detailBtn').click(function(e){
-        console.log("자세히보기 click");
-        window.open('http://www.naver.com','com_detail','top=100, left=200, width=1200, height=600, status=no, menubar=no, toolbar=no, resizable=yes');
-    });
+    // $('button.detailBtn').click(function(e){
+    //     console.log("자세히보기 click");
+    //     window.open('http://www.naver.com','com_detail','top=100, left=200, width=1200, height=600, status=no, menubar=no, toolbar=no, resizable=yes');
+    // });
 
 
 

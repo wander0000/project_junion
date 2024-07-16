@@ -89,6 +89,14 @@
 	    margin-bottom: 58px;
 	}
 
+	.wrap .main .icon,
+	.right .iconn
+	{
+		background-color: var(--color-white);
+		border: none;
+		/* gap: 50px; */
+	}
+
 	.wrap .main .icon
 	{
 	    background-color: var(--color-white);

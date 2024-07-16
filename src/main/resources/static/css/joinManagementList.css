@@ -4,22 +4,21 @@
   --main-color:#FFA500;
   --color-black: #111;
   --color-white: #fff;
-  --color-gray: #787878;
+  --color-gray: #e5e5ec;
   --input-gray: #e5e5ec;
   --button-gray: #f7f7f7;
   --border-color-gray: #dadada;
-  --font-size32: 32px;
-  --font-size24: 24px;
-  --font-size16: 16px;
-  --font-size14: 14px;
-  --font-size12: 12px;
+  --main-title-size: 32px;
+  --sub-title-size: 24px;
+  --input-tab-size: 14px;
+  --small-text-size: 12px;
 }
 
 .buttonGray 
 {
   padding: 8px 20px;
   border: 1px solid var(--input-gray);
-  font-size: var(--font-size14);
+  font-size: var( --input-tab-size);
   border-radius: 6px;
   background-color: #f7f7f7;
   color: #777; 
@@ -64,7 +63,7 @@
 
 .mainContent header .userWrapper h4.name 
 {
-  font-size: var(--font-size14);
+  font-size: var(--input-tab-size);
   margin-right: 12px;
 }
 
@@ -98,7 +97,7 @@ main .mainContainer .memberInfo img.memberImg
 
 main .mainContainer .memberInfo .memberName 
 {
-  font-size: var(--font-size32);
+  font-size: var(--main-title-size);
   font-weight: 600;
 } 
 
@@ -106,7 +105,7 @@ main .mainContainer .memberInfo .memberName
 main .mainContainer .tabWrap 
 {
   display: flex;
-  align-items: center;
+  align-items: center;  
 }
 
 main .mainContainer .tabWrap .tabCon 
@@ -114,11 +113,23 @@ main .mainContainer .tabWrap .tabCon
   display: flex;
   align-items: center;
   margin-right: 40px;
+  padding-bottom: 8px; 
 }
+
+.Maintab 
+{
+  border-bottom: 4px solid transparent;
+}
+
+.Maintab:hover
+{
+  border-bottom: 4px solid var(--main-color);
+}
+
 
 main .mainContainer .tabWrap .tabTitle a
 {
-  font-size: var(--font-size24);
+  font-size: var(--sub-title-size);
   font-weight: 600;
   color: var(--color-black);
   margin-right: 12px;
@@ -126,7 +137,7 @@ main .mainContainer .tabWrap .tabTitle a
 
 main .mainContainer .tabWrap .tabNum a  
 {
-  font-size: var(--font-size24);
+  font-size: var(--sub-title-size);
   font-weight: 600;
   color: var(--main-color);
 }
@@ -149,7 +160,7 @@ main .mainContainer .tabWrap .tabNum a
 {
   padding: 8px 20px;
   border: 1px solid var(--input-gray);
-  font-size: var( --font-size14);
+  font-size: var( --input-tab-size);
   border-radius: 6px;
   background-color: var(--color-white);
   cursor: pointer;
@@ -192,7 +203,7 @@ main .mainContainer .tabWrap .tabNum a
 
 .dataBody .dataBodyCon .companyName
 {
-  font-size: var(--font-size14);
+  font-size: var(--input-tab-size);
   color: #777;
   margin-left: 20px;  
   min-width: 140px;
@@ -215,7 +226,7 @@ main .mainContainer .tabWrap .tabNum a
 .dataBody .dataBodyCon .resumeOption .optionCon,
 .dataBody .dataBodyCon .resumeOption .optionCon a
 {
-  font-size: var(--font-size14);
+  font-size: var(--input-tab-size);
   color: #777;
 }
 
@@ -243,7 +254,7 @@ main .mainContainer .tabWrap .tabNum a
 {
   padding: 8px 20px;
   border: 1px solid var(--input-gray);
-  font-size: var( --font-size14);
+  font-size: var( --input-tab-size);
   border-radius: 6px;
   background-color: #f7f7f7;
   color: #777;  
@@ -418,7 +429,7 @@ button.estimate
 {
   padding: 8px 20px;
   border: 1px solid var(--input-gray);
-  font-size: var( --font-size14);
+  font-size: var( --input-tab-size);
   border-radius: 6px;
   background-color: #f7f7f7;
   color: #777; 
@@ -430,4 +441,35 @@ button.estimate:hover
   border:1px solid var(--main-color);
   background-color: var(--main-color);
   color: var(--color-white);
+}
+
+/* 페이징커스텀 */
+.div_page 
+{
+	margin-top: 40px;	
+}
+
+.div_page ul 
+{
+	display: flex;
+    align-items: center;
+    justify-content: center;	
+	gap: 0 20px;
+}
+
+.paginate_button 
+{
+	text-decoration: none;
+	padding: 8px 14px;
+	border-radius: 6px;
+}
+.paginate_button a 
+{
+	color: #111;
+}
+
+/* 별점 */
+input.com_star 
+{
+	display: none;
 }

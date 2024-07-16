@@ -240,7 +240,7 @@
 									</li>
 								</c:if>
 								<c:forEach var="num" begin="${pageMaker.startpage}" end="${pageMaker.endpage}">									
-									<li class="paginate_button" ${pageMaker.cri3.pageNum == num ? "style='background-color:#FFA500; font-weight: 900';'" : ""}>
+									<li class="paginate_button" ${pageMaker.cri3.pageNum == num ? "style='border:2px solid #FFA500; font-weight: 900';'" : ""}>
 										<a href="${num}">
 											${num}
 										</a>

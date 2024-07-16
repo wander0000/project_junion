@@ -1,7 +1,10 @@
 package com.boot.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,14 @@ import org.springframework.stereotype.Service;
 import com.boot.DAO.CompanyAttachDAO;
 import com.boot.DAO.CompanyInfoDAO;
 import com.boot.DAO.JoinDAO;
+import com.boot.DAO.boardBoardDAO;
+import com.boot.DTO.ComNoticeDTO;
 import com.boot.DTO.CompanyInfoDTO;
 import com.boot.DTO.JoinDTO;
+import com.boot.DTO.boardBoardDTO;
 
 import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @Service("CompanyInfo")
@@ -23,6 +30,49 @@ public class CompanyInfoImpl implements CompanyInfo{
 	@Autowired
 	private SqlSession sqlSession;
 
+	@Override
+	public ArrayList<CompanyInfoDTO> comList() {  
+		log.info("@# comList list");
+		
+		CompanyInfoDAO dao = sqlSession.getMapper(CompanyInfoDAO.class); 
+		ArrayList<CompanyInfoDTO> list = dao.comList();  // dao값을 배열CompanyInfoDTO 'list' 에 집어넣음 
+		
+		return list;
+	}
+	
+	@Override
+	public CompanyInfoDTO comInfoByNum(int com_num) {
+		CompanyInfoDAO dao = sqlSession.getMapper(CompanyInfoDAO.class); 
+		CompanyInfoDTO dto = dao.comInfoByNum(com_num);
+		return dto;
+	}
+
+	@Override
+	public ArrayList<CompanyInfoDTO> comListByNum(String comScrapArrStr) {
+		log.info("@# comList list");
+
+		// 쉼표로 구분된 문자열을 정수 리스트로 변환
+		List<Integer> comList = Arrays.stream(comScrapArrStr.split(","))
+				.map(String::trim)          // 각 문자열의 양쪽 공백 제거
+				.map(Integer::parseInt)     // 문자열을 정수로 변환
+				.collect(Collectors.toList());
+		
+		log.info("@# comListByNum comList=>"+comList);
+		
+		ArrayList<CompanyInfoDTO> list = new ArrayList<>();
+		
+		CompanyInfoDAO dao = sqlSession.getMapper(CompanyInfoDAO.class); 
+		for (int com_num : comList) {
+			CompanyInfoDTO dto = dao.comInfoByNum(com_num);
+            list.add(dto);
+		log.info("@# comListByNum list=>"+list);
+     }
+				
+		return list;
+	}
+	
+	
+	
 	
 	@Override
 	public CompanyInfoDTO companyInfo(String email) {//기업 정보 페이지
@@ -101,6 +151,12 @@ public class CompanyInfoImpl implements CompanyInfo{
 			// 파일업로드 끝 //
 			
 		}
+
+
+
+
+
+
 
 }
 

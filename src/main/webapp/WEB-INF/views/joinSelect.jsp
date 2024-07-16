@@ -136,7 +136,7 @@
 		               <div class="img"></div>
 		               <img src="images/company.svg" alt="#" class="company">
 		               <h3 class="txt">기업회원</h3>
-		               <button class="join">회원가입</button>
+		               <button class="join" onclick="location.href='joinCompany'">회원가입</button>
 		           </div>
        			</div> <!--회원가입 sectionInnerWrapperJoin 끝-->
 			</div> <!--회원가입 sectionInnerJoin 끝-->

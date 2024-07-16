@@ -21,5 +21,6 @@ public interface boardBoardService {
 	public void boardModify(HashMap<String, String> param);
 	public void boardDelete(HashMap<String, String> param);
 	
-//	public void hitcount(HashMap<String, String> param);
+	public int hitcount(boardBoardDTO boardDTO);
+	
 }

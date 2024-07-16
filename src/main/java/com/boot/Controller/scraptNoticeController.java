@@ -42,11 +42,11 @@ public class scraptNoticeController {
 		
 		// 사용자정보의 최근본 채용공고 목록배열 가져오기
 		String noticeScrapArray =service.getnNoticeScrapArray(user_email);
-		log.info("@# recentNotice noticeScrapArray=>"+noticeScrapArray);		
+		log.info("@# noticeScrap noticeScrapArray=>"+noticeScrapArray);		
 		
 		// 사용자정보의 최근본 채용공고 목록 가져오기
 		ArrayList<ComNoticeDTO> list =service.getScrapNoticList(noticeScrapArray);
-		log.info("@# recentNotice recent_notice list=>"+list);		
+		log.info("@# noticeScrap noticeScrapArray list=>"+list);		
 				
 		
 		model.addAttribute("noticeList", list);

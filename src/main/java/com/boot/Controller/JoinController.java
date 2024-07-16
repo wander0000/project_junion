@@ -89,7 +89,7 @@ public class JoinController {
 				
 		joinService.modify(param);		
 		
-		return "login";
+		return "joinSelect";
 //		return "joinIndividualTwo";
 	}
 	
@@ -131,6 +131,57 @@ public class JoinController {
 		
 		return "joinPop2";
 	}
+	
+	// ================ 기업 =============================
+	
+		// 기업 회원가입 페이지
+		@RequestMapping("/joinCompany")
+		public String joinCompany() 
+		{
+			log.info("@# joinCompany");
+			
+			
+			return "joinCompany";
+		}
+		
+		// 중복 이메일 확인
+		@PostMapping("/emailComCheck")
+		@ResponseBody
+		public int emailComCheck(@RequestParam("com_email") String com_email) 
+		{
+			log.info("@# emailComCheck");
+			int result = joinService.emailComCheck(com_email);
+			
+			return result;
+		}
+		
+		// 중복 사업자번호 확인
+		@PostMapping("/serialCheck")
+		@ResponseBody
+		public int serialCheck(@RequestParam("com_serial_number") String com_serial_number) 
+		{
+			log.info("@# serialCheck");
+			int result = joinService.serialCheck(com_serial_number);
+			
+			return result;
+		}
+		
+		// 기업 가입확인
+		@RequestMapping("/joinCompanyOk")
+		public String joinCompanyOk(@RequestParam HashMap<String, String> param, Model model) 
+		{
+			log.info("@# joinOk");		
+			
+			log.info("@# param 1 : 날리기전 " + param);
+			model.addAttribute("com_email", param.get("com_email"));		
+			
+			joinService.joinCompany(param);
+			log.info("@# param 2 : 날린 후" + param);		
+				
+			return "redirect:login";
+//			return null;
+//			return "redirect:joinIndividualTwo?user_email=${user_email}";
+		}
 	
 	
 	

@@ -108,6 +108,7 @@ section .sectionInner .resumeButton .resume
             <div class="sectionInner">
                     <!-- <form method="post" action="/resumeUser"> -->
                         <input type="hidden" name="notice_num" id="notice_num">
+                        <input type="hidden" name="com_email" id="com_email" value=${notice.com_email}>
                     <div class="noticeProfile">
                         <div class="comName">${notice.com_name}</div>
                         <div class="noticeTitle">

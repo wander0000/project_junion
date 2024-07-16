@@ -16,6 +16,7 @@ import com.boot.DAO.ComNoticeDAO;
 import com.boot.DTO.ComNoticeAttachDTO;
 import com.boot.DTO.ComNoticeDTO;
 import com.boot.DTO.ResumeDTO;
+import com.boot.DTO.SubmitDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -126,12 +127,12 @@ public class ComNoticeServiceImpl implements ComNoticeService{
 //		log.info("됐니?");
 //		return false;
 	}
+		
 	
 	@Override
-	public void updateResumeNumArr(ComNoticeDTO comNoticeDTO){//이력서 지원 완료시 공고 테이블에 이력서 번호 배열로 추가
-
+	public void updateSubmitData(SubmitDTO submitDTO){//이력서지원정보 저장
 		ComNoticeDAO dao = sqlSession.getMapper(ComNoticeDAO.class);
-		dao.updateResumeNumArr(comNoticeDTO);
+		dao.updateSubmitData(submitDTO);
 	}
 	
 	

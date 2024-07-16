@@ -72,10 +72,11 @@ public class boardBoardController {
 	
 	
 	@RequestMapping("/boardDetailView")  // content_view 사용하지만 글 눌렀을때 이쪽타고 '글 상세보기' 보여줌
-	public String boardDetailView(@RequestParam HashMap<String, String> param, Model model) {
+	public String boardDetailView(@RequestParam HashMap<String, String> param, Model model, boardBoardDTO boardDTO) {
 		log.info("@# 보드컨트롤러  boardDetailView");
 		
-		
+		int hitcount = service.hitcount(boardDTO);
+		model.addAttribute("hitcount", hitcount);
 		
 		boardBoardDTO dto = service.boardDetailView(param);
 		model.addAttribute("boardDetailView", dto);

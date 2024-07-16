@@ -43,6 +43,7 @@
 		width: 100%;
 		background-color: var(--color-white);
 		position: fixed;
+		z-index: 9;
 	}
 
 	.headerInner 
@@ -110,9 +111,9 @@
             <ul class="menu">
                 <li><a href="cardPageList">채용</a></li>
                 <li><a href="jobpostingIndividualSupport">인재풀</a></li>
-                <li><a href="#">기업정보</a></li>
+                <li><a href="comList">기업정보</a></li>
                 <li><a href="boardList">커뮤니티</a></li>
-                <li><a href="#">공지사항</a></li>
+                <!-- <li><a href="#">공지사항</a></li> -->
             </ul>
             <ul class="rightMenu">
                 <li id="login"><a href="login">로그인</a></li>
@@ -129,33 +130,31 @@
 	        2024-07-08 하지수 
 	        로그인하면 마이페이지와 이름, 로그아웃 뜸
     	*/
-		window.onload = function() {
-            var loginName = '${login_name}';
-            if (loginName.trim() !== '') {
-				document.getElementById('login').style.display = 'none';
-                document.getElementById('join').style.display = 'none';
-                document.getElementById('lonin_name').style.display = 'block';
-                document.getElementById('mypage').style.display = 'block';
-                document.getElementById('logout').style.display = 'block';
-            } else {
-                document.getElementById('login').style.display = 'block';
-                document.getElementById('join').style.display = 'block';
-                document.getElementById('lonin_name').style.display = 'none';
-                document.getElementById('mypage').style.display = 'none';
-                document.getElementById('logout').style.display = 'none';
-            }
-
-        };
-		
-		
-		$(document).ready(function(){
-		         var mypageLink = document.getElementById('mypageLink')
-		         if('${login_usertype}'==1){
-		            mypageLink.href='individualMain';
-		         }else if('${login_usertype}'==2){
-		            mypageLink.href='companyMain';
-		         }
-		      })
+		window.addEventListener('load', function() {
+					var loginName = '${login_name}';
+					if (loginName.trim() !== '') {
+						document.getElementById('login').style.display = 'none';
+						document.getElementById('join').style.display = 'none';
+						document.getElementById('lonin_name').style.display = 'block';
+						document.getElementById('mypage').style.display = 'block';
+						document.getElementById('logout').style.display = 'block';
+					} else {
+						document.getElementById('login').style.display = 'block';
+						document.getElementById('join').style.display = 'block';
+						document.getElementById('lonin_name').style.display = 'none';
+						document.getElementById('mypage').style.display = 'none';
+						document.getElementById('logout').style.display = 'none';
+					}
+				});
+				
+				$(document).ready(function(){
+				         var mypageLink = document.getElementById('mypageLink')
+				         if('${login_usertype}'==1){
+				            mypageLink.href='individualMain';
+				         }else if('${login_usertype}'==2){
+				            mypageLink.href='companyMain';
+				         }
+				      })
 
 	</script>
 </body>

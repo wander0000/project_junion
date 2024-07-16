@@ -21,7 +21,9 @@ public interface boardBoardDAO {  // 게시글 목록,작성버튼,수정버튼,
 	public void boardModify(HashMap<String, String> param);
 	public void boardDelete(HashMap<String, String> param);
 	
-//	public void hitcount(HashMap<String, String> param);
+	
+	public int hitcount(boardBoardDTO boardDTO);
+	
 }
 
 

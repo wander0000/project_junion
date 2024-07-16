@@ -7,6 +7,7 @@ import java.util.List;
 import com.boot.DTO.ComNoticeAttachDTO;
 import com.boot.DTO.ComNoticeDTO;
 import com.boot.DTO.ResumeDTO;
+import com.boot.DTO.SubmitDTO;
 
 public interface ComNoticeService {
 //	public ArrayList<ComNoticeDTO> JobPostCard();//채용공고목록 가져오기
@@ -23,7 +24,7 @@ public interface ComNoticeService {
 //	public ArrayList<ComNoticeDTO> getNoticeNum(HashMap<String, String> param);//이력서 선택, 지원 완료시 공고 테이블에 이력서 배열값 가져오기
 //	public boolean insertResumNum(HashMap<String, String> param);//이력서 선택, 지원 완료시 공고 테이블에 이력서 번호 추가
 	public void insertResumNum(HashMap<String, String> param);//이력서 선택, 지원 완료시 공고 테이블에 이력서 번호 추가
-	public void updateResumeNumArr(ComNoticeDTO comNoticeDTO);//DB notice 정보에 지원자 이력서넘버 배열 저장
+	public void updateSubmitData(SubmitDTO submitDTO);//이력서지원정보 저장
 	
 	public void registerNotice(ComNoticeDTO comNoticeDTO);
 	

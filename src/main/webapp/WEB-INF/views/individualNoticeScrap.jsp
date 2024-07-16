@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인-마이페이지-탈퇴</title>
+<title>개인-스크랩 공고</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/individualMain.css">
 <!--<link rel="stylesheet" href="src/main/resources/static/css/style.css">-->
@@ -44,6 +44,7 @@
 	  min-height: 100vh;
 	}
 	
+
   /* 드롭다운 메뉴 */
 	.dorpdowmMain
 	{
@@ -114,6 +115,8 @@ main .mainContainer
 .mainContainer .recentJobPost .title 
 {
   color: var(--color-black);
+  /* margin-top: 70px; */
+  
 }
 
 .mainContainer .recentJobPost .listNum 
@@ -428,36 +431,30 @@ main .mainContainer .jobPostList
 	<div class="container">
 		<%@ include file="nav_individual.jsp" %>
 	     <div class="mainContent">        
-        <header>
-          <div class="userWrapper">
-              <img src="images/people.svg"alt="">
-              <div class="dorpdowmMain">
-                  <div class="dropdown">
-                      <div class="dropdownSub" id="dropdownSub">
-                          <h4 class="name" name="user_name" style="cursor: pointer;">${login_name}</h4>
-                          <div class="dropdownContent" id="dropdownContent">
-                              <a href="userInfo"><div>개인 정보 관리</div></a>
-                              <a href="logout"><div>로그아웃</div></a>
-                          </div> <!-- dropdownContent 끝-->
-                          <span class="icon">
-                              <i id="iconDown" class="fa-solid fa-caret-down" style="display: block; cursor: pointer;"></i>
-                              <i id="iconUp" class="fa-solid fa-caret-up" style="display: none; cursor: pointer;"></i>
-                          </span>
-                      </div> <!--dropdownSub 끝-->
-                  </div> <!--dropdown 끝-->
-              </div><!--dropdownMain 끝-->
-           </div>
-        </header>    
+	        <header>
+            <div class="userWrapper">
+                <img src="images/people.svg"alt="">
+                <div class="dorpdowmMain">
+                    <div class="dropdown">
+                        <div class="dropdownSub" id="dropdownSub">
+                            <h4 class="name" name="user_name" style="cursor: pointer;">${login_name}</h4>
+                            <div class="dropdownContent" id="dropdownContent">
+                                <a href="userInfo"><div>개인 정보 관리</div></a>
+                                <a href="logout"><div>로그아웃</div></a>
+                            </div> <!-- dropdownContent 끝-->
+                            <span class="icon">
+                                <i id="iconDown" class="fa-solid fa-caret-down" style="display: block; cursor: pointer;"></i>
+                                <i id="iconUp" class="fa-solid fa-caret-up" style="display: none; cursor: pointer;"></i>
+                            </span>
+                        </div> <!--dropdownSub 끝-->
+                    </div> <!--dropdown 끝-->
+                </div><!--dropdownMain 끝-->
+            </div>
+          </header>    
             <main>
                 <div class="mainContainer">
                     <div class="recentJobPost">
-                        <!-- <h3 class="title">
-                            <a href="#">스크랩 공고</a>
-                        </h3>
-                        <h3 class="listNum">
-                            <a href="#">30</a>
-                        </h3> -->
-                        <h3 class="title">스크랩 공고</h3>
+                      <h3 class="title">스크랩 공고</h3>
                       <h3 class="listNum">${noticeList.size()}</h3>
                     </div>
                     <div class="listTable">
@@ -499,16 +496,15 @@ main .mainContainer .jobPostList
                             </div>                   
                         </div><!-- searchWrap 끝 -->  
                         <div class="jobPostList">
-                          <c:forEach items="${noticeList}" var="dto">	
+                          <c:forEach items="${noticeList}" var="dto">		
                             <div class="postBox">
                                 <div class="boxLeft">
                                     <input type="checkbox" name="postListRow" id="com_name" class="normal"><!-- id값에 기업명가져와서 넣어줘야함-->
                                     <!-- <label for="com_name">브레인즈컴퍼니</label> -->
-                                    <label for="com_name">${dto.com_name}</label>
+                                    <label for="com_name"><a href="/comDetail?com_email=${dto.com_email}">${dto.com_name}</a></label>
                                 </div><!-- boxLeft 끝-->
                                 <div class="boxMiddle">
                                     <!-- <h3 class="jobPostTitle">[Web Product 팀] 프론트 엔드 엔지니어 (3년 이상)</h3> -->
-                                    <!-- <h3 class="jobPostTitle">${dto.notice_title}</h3> -->
                                     <a class="jobPostTitle" href="jobPostDetail?notice_num=${dto.notice_num}">${dto.notice_title}</a>
                                     <div class="jobPostInfo">
                                         <!-- <p class="notice_area">서울 성동구</p> -->
@@ -660,10 +656,10 @@ $(".normal").on("click", function() {
     2024-07-02 서연주 
     자세히보기 누르면 기업정보 상세페이지로 새창(기업아이디를 가지고 이동해야함)
     */
-    $('button.detailBtn').click(function(e){
-        console.log("자세히보기 click");
-        window.open('http://www.naver.com','com_detail','top=100, left=200, width=1200, height=600, status=no, menubar=no, toolbar=no, resizable=yes');
-    });
+    // $('button.detailBtn').click(function(e){
+    //     console.log("자세히보기 click");
+    //     window.open('http://www.naver.com','com_detail','top=100, left=200, width=1200, height=600, status=no, menubar=no, toolbar=no, resizable=yes');
+    // });
 
 
 

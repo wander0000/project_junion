@@ -209,6 +209,27 @@ main .toptitle .toptitle2
   color: var(--color-gray);
 }
 
+.columnAA .detail#stack 
+{ 
+	display: flex;
+	gap: 0 20px;
+}
+
+
+.stack .detail
+{
+  gap: 10px;
+}
+.tech
+{
+  /* gap: 10px; */
+  background-color: var(--main-color);
+  color: var(--color-white);
+  padding: 12px 20px;
+  /* margin: 0 12px; */
+  border-radius: 6px;
+  border: none;
+}
 
 
 

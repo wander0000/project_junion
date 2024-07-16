@@ -30,11 +30,15 @@ public class boardPageController {
 	@Autowired
 	private boardPageService service;
 	
+	@Autowired
+	private boardBoardService boardservice;
+	
 //	@RequestMapping("/listWithPaging")
 	@RequestMapping("/boardList")  
 	public String listWithPaging(Criteria cri, Model model) {  // listWithPaging = 'list'로 담아서넘김 / getTotalCount + PageDTO = 'pageMaker'로 담아서넘김
 		log.info("@# list");
 		log.info("@# cri=>"+cri);
+
 		
 		ArrayList<boardBoardDTO> list = service.boardListWithPaging(cri);
 //		int total = service.getTotalCount();
@@ -46,6 +50,8 @@ public class boardPageController {
 		model.addAttribute("boardList", list);  // BOARD DTO 보냄
 //		model.addAttribute("pageMaker", new PageDTO(123, cri));
 		model.addAttribute("pageMaker", new boardPageDTO(total, cri));  // PAGE DTO (토탈,CRI) 보냄
+		
+		
 		
 		return "boardListView";
 	}

@@ -114,7 +114,7 @@ public class individualController {
 	@RequestMapping("/userInfoModifyPop")
 	public String userInfoModifyPop(@RequestParam HashMap<String, String> param, Model model) 
 	{
-		log.info("@# joinPop2로 넘어옴");	
+		log.info("@# userInfoModifyPop 희망직무");	
 		
 		
 		List<JoinDTO> job = joinService.job();		
@@ -134,7 +134,7 @@ public class individualController {
 	@RequestMapping("/userInfoModifyPop2")
 	public String userInfoModifyPop2(@RequestParam HashMap<String, String> param, Model model) 
 	{
-		log.info("@# joinPop로 넘어옴");	
+		log.info("@# userInfoModifyPop2 주요기술");	
 		
 		List<JoinDTO> stack =  joinService.stack();		
 		model.addAttribute("stack_name", stack);
@@ -157,40 +157,29 @@ public class individualController {
 	
 		log.info("@# individualUserInfoModify");	
 		log.info("@# individualUserInfoModify param =>" +param);	
-		
-//		String input_pw = request.getParameter("input_pw");
-//        String session_pw = request.getParameter("session_pw");
-        String input_pw = param.get("input_pw");
+
+		String input_pw = param.get("input_pw");
         String session_pw = param.get("session_pw");
         
 		log.info("@# individualUserInfoModify session_pw =>"+input_pw);//세션 pw화인
 		log.info("@# individualUserInfoModify input_pw =>"+session_pw);//사용자가 입력한 pw화인
 		
-//		serivce.modify(param);		
-//		
-//		UserDTO newDTO = serivce.getUserInfo(request.getParameter("user_email"));	
-//		log.info("@# individualUserInfoModify newDTO=>"+newDTO);
-//		model.addAttribute("userInfo", newDTO);//업데이트 한 새 정보를 다시 모델에 담아서 넘겨줌
-//		
-//		return "individualUserInfo";
 		
-		
-			if (input_pw == session_pw) {//입력한 비번이 세션의 비번과 같으면 
-				
-				serivce.modify(param); //회원정보 update	
-				
-				UserDTO newDTO = serivce.getUserInfo(param.get("user_email"));	
-				log.info("@# individualUserInfoModify newDTO=>"+newDTO);
-				model.addAttribute("userInfo", newDTO);//업데이트 한 새 정보를 다시 모델에 담아서 넘겨줌
-				
-				return "individualUserInfo";
-			}else {//입력한 비번이 세션의 비번과 다르면 다시 회원정보 수정페이지로
-				log.info("@# 실패 ㅠㅠ");
-				
-//				return "/alert";
-				return "redirect:individualUserInfo";
-			}
+		if (input_pw.equals(session_pw)) {//입력한 비번이 세션의 비번과 같으면 
+			
+			serivce.modify(param); //회원정보 update	
+			
+			UserDTO newDTO = serivce.getUserInfo(param.get("user_email"));	
+			log.info("@# individualUserInfoModify newDTO=>"+newDTO);
+			model.addAttribute("userInfo", newDTO);//업데이트 한 새 정보를 다시 모델에 담아서 넘겨줌
+			
+			return "individualUserInfo";
+		}else {//입력한 비번이 세션의 비번과 다르면 다시 회원정보 수정페이지로
+			log.info("@# 실패 ㅠㅠ");
+			
+			return "redirect:individualUserInfo";
 		}
+	}
 		
 		
 	

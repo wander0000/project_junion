@@ -97,7 +97,6 @@ public class ComNoticeController {
 	    }
 	    
 	    log.info("@# jobPost recentJobPosts=> " + recentJobPosts);
-
 	    
 	    session.setAttribute("recentJobPost", recentJobPosts);//세션에 정보 저장
 		

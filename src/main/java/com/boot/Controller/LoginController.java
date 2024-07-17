@@ -45,24 +45,17 @@ public class LoginController {
 			return "/alert";
 		} else {
 			if (param.get("user_pw").equals(dtos.get(0).getUser_pw())) {
-				
-
 		        // 비밀번호 확인 =>로그인ok 가기전  세션 생성
 
-								
 		        // 세션을 생성하기 전에 기존의 세션 파기
 		        httpServletRequest.getSession().invalidate();
 		        HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
-				
 				
 		        // 세션에 userId를 넣어줌
 		        session.setAttribute("login_email", dtos.get(0).getUser_email());
 		        session.setAttribute("login_pw", dtos.get(0).getUser_pw());
 		        session.setAttribute("login_name", dtos.get(0).getUser_name());
 		        session.setAttribute("login_usertype", dtos.get(0).getUser_type());
-//		        session.setAttribute("login_email", param.get("user_email"));
-//		        session.setAttribute("login_pw", param.get("user_pw"));
-//		        session.setAttribute("login_usertype", param.get("user_type"));
 		        
 		        log.info("@# session login_email=>"+session.getAttribute("login_email"));
 		        
@@ -71,11 +64,7 @@ public class LoginController {
 		        model.addAttribute("pageName", "세션 로그인");
 		        
 		        session.setMaxInactiveInterval(1800); // Session이 30분동안 유지
-//		        return "main";
 		        return "redirect:main";
-//				return "redirect:individualMain";//일단 게인 메인페이지로 가도록 나중에 전체 메인으로 가도록 바꿀 것 
-//				return "redirect:login_ok";
-///				return "login_ok";
 			} else {
 				httpServletRequest.setAttribute("msg", "없는 회원정보입니다. 확인해주세요");
 				httpServletRequest.setAttribute("url", "/login");

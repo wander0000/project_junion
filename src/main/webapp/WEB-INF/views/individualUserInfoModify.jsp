@@ -402,7 +402,6 @@
 	$(document).ready(function(){
 		/*
 		2024-07-12 서연주
-	
 		수정 버튼 누르면 formdate 가지고 컨트롤러로
 		*/
 		$("button.buttonModify").click(function(e) {
@@ -413,33 +412,25 @@
 			let inputs = $("input");  //document의 input element 전부
 			let selects = $("select"); //document의 select element 전부
 
-			// FormData에 input에 담긴 데이터 담기
-			for (let i = 0; i < inputs.length; i++) {
+			for (let i = 0; i < inputs.length; i++) {// FormData에 input에 담긴 데이터 담기
 				const name = inputs[i].name;
 				const value = inputs[i].value;
 
 				formData.append(name, value);
 			}
 
-			// FormData에 select에 담긴 데이터 담기
-			for (let i = 0; i < selects.length; i++) {
+			for (let i = 0; i < selects.length; i++) {// FormData에 select에 담긴 데이터 담기
 				const name = selects[i].name;
 				const value = selects[i].value;
 
 				formData.append(name, value);
 			}
-
-			// FormData에 데이터가 제대로 담겼는지 확인
-			for (let pair of formData.entries()) {
+			
+			for (let pair of formData.entries()) {// FormData에 데이터가 제대로 담겼는지 확인
 				console.log(pair[0] + ', ' + pair[1]);
 			}
 			
 			// formData.submit(); 배열정보가 있어서 그냥 submit 은 안되는듯..
-
-			// //입력한 비번과 세션비번 확인하기
-			// if(formDate.get("input_pw") != formDate.get("session_pw")){
-			// 	alert("비밀번호를 확인해주세요"); // 비번틀릴 때 알림
-			// }
 			// AJAX 요청 수행
 			$.ajax({
 				type: "post", // 요청 메소드 유형
@@ -458,8 +449,6 @@
 					alert("수정을 완료하지 못했습니다. 비밀번호를 확인해 주세요"); // 오류 시 알림
 				}
 			});//end of jax
-
-		
 		});;//수정하기 버튼 클릭 function 끝
 
 				

@@ -32,4 +32,5 @@ public class UserDTO {
 	private String stack_name;
 	private int job_no;
 	private String job_name;
+	private String job_name2;
 }
